@@ -3,7 +3,7 @@ name: 每日股票分析
 on:
   # 定时触发 - 每天北京时间 18:00 (UTC 10:00)
   schedule:
-    - cron: '0 12 * * 1-5'     # 周一到周五，UTC 12:00 = 北京时间 20:00
+    - cron: '0 10 * * 1-5'     # 周一到周五，UTC 10:00 = 北京时间 18:00
   
   # 手动触发
   workflow_dispatch:
@@ -84,6 +84,9 @@ jobs:
           # Anthropic / Claude
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ANTHROPIC_MODEL: ${{ vars.ANTHROPIC_MODEL || secrets.ANTHROPIC_MODEL || 'claude-3-5-sonnet-20241022' }}
+
+          # 定时配置
+          SCHEDULE_TIME: '20:00'
 
           # ==========================================
           # 数据源
